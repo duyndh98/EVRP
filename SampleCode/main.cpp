@@ -46,7 +46,11 @@ int main(int argc, char *argv[]) {
 
   int run;
   /*Step 1*/
+#ifdef _DEBUG
+  problem_instance = "..\\..\\evrp-benchmark-set\\E-n22-k4.evrp";
+#else
   problem_instance = argv[1];       //pass the .evrp filename as an argument
+#endif
   read_problem(problem_instance);   //Read EVRP from file from EVRP.h
 
   /*Step 2*/
