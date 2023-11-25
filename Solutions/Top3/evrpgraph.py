@@ -54,14 +54,37 @@ def plotgraph(nodes, ordered_nodes, output = None):
     else:
         plt.show()
     
-    
+import os
 def main():
-    args = argparser()
-    nodes, ordered_nodes = readfile(args.input)
-    output = args.output
-    if output is None:
-        output = ''.join(args.input.split('.')[:-1]) + '.png'
-    plotgraph(nodes, ordered_nodes, output)
+    
+    VISUALIZE_ALL = True
+
+    if VISUALIZE_ALL:
+        output_files_dir = "output_files"
+
+        for solution_dir_name in os.listdir(output_files_dir):
+            solution_dir_path = os.path.join(output_files_dir, solution_dir_name)
+            if os.path.isdir(solution_dir_path):
+
+                for solution_file_name in os.listdir(solution_dir_path):
+                    solution_file_path = os.path.join(solution_dir_path, solution_file_name)
+                    if solution_file_path.endswith(".evrp.txt"):
+            
+                        print(solution_file_path)
+                        solution_png_path = solution_file_path + '.png'
+
+                        nodes, ordered_nodes = readfile(solution_file_path)
+                        plotgraph(nodes, ordered_nodes, solution_png_path)
+
+    else:
+        args = argparser()
+        nodes, ordered_nodes = readfile(args.input)
+        output = args.output
+        if output is None:
+            output = ''.join(args.input.split('.')[:-1]) + '.png'
+        plotgraph(nodes, ordered_nodes, output)
+
+    return
     
 if __name__ == '__main__':
     main()
