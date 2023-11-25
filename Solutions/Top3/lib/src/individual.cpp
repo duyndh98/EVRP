@@ -148,7 +148,7 @@ bool Individual::is_valid_solution() {
 }
 
 bool Individual::is_valid_order() {
-    int have[NUM_OF_CUSTOMERS + 1];
+    std::vector<int> have(NUM_OF_CUSTOMERS + 1);
 
     for(int i = 0; i <= NUM_OF_CUSTOMERS; i++) {
         have[i] = 0;
@@ -247,7 +247,7 @@ void Individual::local_search(){
 void Individual::redistribute_customer(){
     set_tour_index();
     int customer;
-    int have[NUM_OF_CUSTOMERS + 1];
+    std::vector<int> have(NUM_OF_CUSTOMERS + 1);
     for (int i = 0; i <= NUM_OF_CUSTOMERS; i++){
         have[i] = 0;
     }
@@ -522,13 +522,13 @@ void Individual::complete_gen() {
         l = seg.left + i;
         r = seg.right + i + 2;
         //insert charging station
-        if(not complete_subgen(full_path, gen_temp, l, r, cnt)) {
+        if(!complete_subgen(full_path, gen_temp, l, r, cnt)) {
             this->fitness = INF;
             return;
         }
     }
     full_path[cnt++] = 0;
-    if(not check_solution(full_path, cnt)) {
+    if(!check_solution(full_path, cnt)) {
         this->fitness = fitness_evaluation(full_path, cnt, false);
         // cout << this->fitness << "\n";
         add_penalty();

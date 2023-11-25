@@ -9,6 +9,7 @@
 #include<time.h>
 #include<limits.h>
 #include <sys/stat.h>
+#include <direct.h>
 
 #include "EVRP.hpp"
 #include "stats.hpp"
@@ -40,7 +41,11 @@ void open_stats(string algorithm, string outpath){
     }
   }
   // makedir ouput path if not exist
+#ifdef _WIN32
+  mkdir(outpath.c_str());
+#else
   mkdir(outpath.c_str(), 0777);
+#endif
   sprintf(perf_filename, "%s/stats.%s_%s.txt", outpath.c_str(), algorithm.c_str(), problem_instance);
   //for performance
   if ((log_performance = fopen(perf_filename,"w")) == NULL) {

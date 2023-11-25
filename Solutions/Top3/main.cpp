@@ -6,6 +6,17 @@ using namespace std;
 
 int main(int argc, char *argv[]) {
   int run;
+#ifdef _DEBUG
+  char* debug_argv[4] =
+  {
+    argv[0],
+    "HMAGS",
+    "../../../benchmark/E-n22-k4.evrp",
+    "output_files"
+  };
+  argv = debug_argv;
+#endif
+
   algorithm = argv[1];
   if (argv[2]){
     problem_instance = argv[2]; 

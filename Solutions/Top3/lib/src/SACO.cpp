@@ -339,7 +339,7 @@ void SACO::optimize () {
             is_fessible = route(k);
             // Ants[k].show();
 			// cout << (is_fessible?"Fessible":"Not Fessible") << "\n";
-        } while (not is_fessible);
+        } while (!is_fessible);
 		// cout << "Done\n";
 		// if (not check_solution(Ants[k].solution, Ants[k].get_steps())){
 		// 	cout << "Warning!\n";

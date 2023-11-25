@@ -9,6 +9,7 @@
 #include<time.h>
 #include<limits.h>
 #include <sys/stat.h>
+#include <direct.h>
 
 #include "EVRP.hpp"
 
@@ -446,7 +447,11 @@ void save_solution(string output_dir, string algorithm, string task, int run){
     ofstream solution_file;
     output_dir = output_dir + '/' + to_string(run);
     // make directory if not exist
+#ifdef _WIN32
+    mkdir(output_dir.c_str());
+#else
     mkdir(output_dir.c_str(), 0777);
+#endif
     string solution_file_name = output_dir + "/solution_" + algorithm + '_' +
        task +".txt";
     solution_file.open(solution_file_name);

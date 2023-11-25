@@ -73,8 +73,8 @@ void HMAGS::distribute_crossover(Individual parent_1, Individual parent_2, int i
     int num = rand()%(NUM_OF_CUSTOMERS) + 1;// so ngau nhien tu 1 den size of customers
     int id1 = parent_1.tour_index[num];// customer 'num' of id1 tour in parent_1
     int id2 = parent_2.tour_index[num];// customer 'num' of id2 tour in parent_2
-    int have[NUM_OF_CUSTOMERS + 1];
-    int alens[NUM_OF_CUSTOMERS + 1];
+    std::vector<int> have(NUM_OF_CUSTOMERS + 1);
+    std::vector<int> alens(NUM_OF_CUSTOMERS + 1);
 
     Individual child1;
     Individual child2;
