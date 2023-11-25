@@ -1,0 +1,11 @@
+*.run
+*.run.xml
+Data/
+output_files/
+.vscode/
+visua*
+exe*
+run*
+build/*
+*/build/*
+*workspace*
