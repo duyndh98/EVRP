@@ -1,7 +1,7 @@
 *.run
 *.run.xml
 Data/
-output_files/
+//output_files/
 .vscode/
 visua*
 exe*
