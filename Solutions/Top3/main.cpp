@@ -70,29 +70,46 @@ int benchmark(string algorithm, string benchmark_file, string output_file) {
 
 int main(int argc, char* argv[]) {
 
-    string algorithm = "HMAGS";
-    string output_dir = "output_files";
+    string algorithm;
+    string output_dir;
+    string benchmark_file;
+    std::vector<string> benchmark_files;
 
-    std::vector<string> benchmark_files =
+    if (argc == 1)
     {
-        "X-n351-k40.evrp",
-        "X-n459-k26.evrp",
-        "X-n573-k30.evrp",
-        "X-n685-k75.evrp",
-        "X-n749-k98.evrp",
-        "X-n819-k171.evrp",
-        "X-n916-k207.evrp",
-        "X-n1001-k43.evrp",
-        "E-n22-k4.evrp",
-        "E-n23-k3.evrp",
-        "E-n30-k3.evrp",
-        "E-n33-k4.evrp",
-        "E-n51-k5.evrp",
-        "E-n76-k7.evrp",
-        "E-n101-k8.evrp",
-        "X-n143-k7.evrp",
-        "X-n214-k11.evrp"
-    };    
+        algorithm = "HMAGS";
+        
+        output_dir = "output_files";
+        output_dir += "/" + algorithm;
+
+        benchmark_files =
+        {
+            "X-n351-k40.evrp",
+            "X-n459-k26.evrp",
+            "X-n573-k30.evrp",
+            "X-n685-k75.evrp",
+            "X-n749-k98.evrp",
+            "X-n819-k171.evrp",
+            "X-n916-k207.evrp",
+            "X-n1001-k43.evrp",
+            "E-n22-k4.evrp",
+            "E-n23-k3.evrp",
+            "E-n30-k3.evrp",
+            "E-n33-k4.evrp",
+            "E-n51-k5.evrp",
+            "E-n76-k7.evrp",
+            "E-n101-k8.evrp",
+            "X-n143-k7.evrp",
+            "X-n214-k11.evrp"
+        };
+    }
+    else
+    {
+        algorithm = argv[1];
+        output_dir = argv[2];
+        benchmark_files.push_back(argv[3]);
+    }
+
     string benchmark_dir = "../../../../../evrp-benchmark-set/";
 
     for each (auto benchmark_file in benchmark_files)
