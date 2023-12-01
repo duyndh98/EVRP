@@ -8,6 +8,7 @@
 #include<fstream>
 #include<time.h>
 #include<limits.h>
+#include<direct.h>
 
 #include "EVRP.hpp"
 #include "stats.hpp"
@@ -32,9 +33,12 @@ void open_stats(void){
 
 
   //initialize and open output files
+  mkdir("output_files");
+  std::string name = problem_instance;
+  name.erase(0, name.find_last_of('/') + 1);
   perf_filename = new char[CHAR_LEN];
-  sprintf(perf_filename, "%s.stats.txt",
-	 problem_instance);
+  sprintf(perf_filename, "output_files/stats.%s.txt",
+      name.c_str());
   //for performance
   if ((log_performance = fopen(perf_filename,"a")) == NULL) { exit(2); }
   //initialize and open output files

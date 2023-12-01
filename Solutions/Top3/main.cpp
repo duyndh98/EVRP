@@ -79,8 +79,7 @@ int main(int argc, char* argv[]) {
     {
         algorithm = "HMAGS";
         
-        output_dir = "output_files";
-        output_dir += "/" + algorithm;
+        output_dir = "output_files/";
 
         benchmark_files =
         {
@@ -110,7 +109,7 @@ int main(int argc, char* argv[]) {
         benchmark_files.push_back(argv[3]);
     }
 
-    string benchmark_dir = "../../../../../evrp-benchmark-set/";
+    string benchmark_dir = "../../../evrp-benchmark-set/";
 
     for each (auto benchmark_file in benchmark_files)
     {
